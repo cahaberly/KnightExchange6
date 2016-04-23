@@ -12,12 +12,23 @@ Namespace Controllers
     Public Class book_infoController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New KnightExchangeDBEntities
-
+        Private db As New KnightExchangeDBEntities1
         ' GET: book_info
-        Function Index() As ActionResult
-            Return View(db.book_info.ToList())
+        Function Index(searchString As String) As ActionResult
+            Dim myBook = From s In db.book_info Select s
+            If Not String.IsNullOrEmpty(searchString) Then
+                myBook = myBook.Where(Function(s) s.book_title.ToUpper().Contains(searchString.ToUpper()) _
+                    Or s.book_isbn.ToUpper().Contains(searchString.ToUpper()) _
+                    Or s.book_author.ToUpper().Contains(searchString.ToUpper()))
+            End If
+            Return View(myBook.ToList())
+            'Return View(db.book_info.ToList())
         End Function
+
+        '' GET: book_info
+        'Function Index() As ActionResult
+        '    Return View(db.book_info.ToList())
+        'End Function
 
         ' GET: book_info/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
@@ -32,6 +43,7 @@ Namespace Controllers
         End Function
 
         ' GET: book_info/Create
+        <Authorize>
         Function Create() As ActionResult
             Return View()
         End Function
@@ -51,6 +63,7 @@ Namespace Controllers
         End Function
 
         ' GET: book_info/Edit/5
+        <Authorize>
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
@@ -77,6 +90,7 @@ Namespace Controllers
         End Function
 
         ' GET: book_info/Delete/5
+        <Authorize>
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)

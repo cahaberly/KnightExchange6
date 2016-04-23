@@ -1,4 +1,4 @@
-﻿' T4 code generation is enabled for model 'C:\Users\Clay\SkyDrive\Spring 2016\ASP_Net Class\KnightExchange\KnightExchange\KnightExchange\Models\KnightExchange_Model.edmx'. 
+﻿' T4 code generation is enabled for model 'C:\Users\Clay\SkyDrive\Spring 2016\ASP_Net Class\KnightExchange_1\KnightExchange\KnightExchange\Models\KnightExchange.edmx'. 
 ' To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 ' property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 ' is open in the designer.

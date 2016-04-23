@@ -12,7 +12,7 @@ Namespace Controllers
     Public Class productsController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New KnightExchangeDBEntities
+        Private db As New KnightExchangeDBEntities1
 
         ' GET: products
         Function Index() As ActionResult
@@ -33,6 +33,7 @@ Namespace Controllers
         End Function
 
         ' GET: products/Create
+        <Authorize>
         Function Create() As ActionResult
             ViewBag.productinfo_id = New SelectList(db.product_info, "productinfo_id", "product_name")
             ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname")
@@ -56,6 +57,7 @@ Namespace Controllers
         End Function
 
         ' GET: products/Edit/5
+        <Authorize>
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
@@ -86,6 +88,7 @@ Namespace Controllers
         End Function
 
         ' GET: products/Delete/5
+        <Authorize>
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)

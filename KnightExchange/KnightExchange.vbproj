@@ -218,35 +218,35 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\book.vb">
-      <DependentUpon>KnightExchange_Model.tt</DependentUpon>
+      <DependentUpon>KnightExchange.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\book_info.vb">
-      <DependentUpon>KnightExchange_Model.tt</DependentUpon>
+      <DependentUpon>KnightExchange.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.vb" />
-    <Compile Include="Models\KnightExchange_Model.Context.vb">
+    <Compile Include="Models\KnightExchange.Context.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>KnightExchange_Model.Context.tt</DependentUpon>
+      <DependentUpon>KnightExchange.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\KnightExchange_Model.Designer.vb">
+    <Compile Include="Models\KnightExchange.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>KnightExchange_Model.edmx</DependentUpon>
+      <DependentUpon>KnightExchange.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\KnightExchange_Model.vb">
+    <Compile Include="Models\KnightExchange.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>KnightExchange_Model.tt</DependentUpon>
+      <DependentUpon>KnightExchange.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\product.vb">
-      <DependentUpon>KnightExchange_Model.tt</DependentUpon>
+      <DependentUpon>KnightExchange.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\product_info.vb">
-      <DependentUpon>KnightExchange_Model.tt</DependentUpon>
+      <DependentUpon>KnightExchange.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user.vb">
-      <DependentUpon>KnightExchange_Model.tt</DependentUpon>
+      <DependentUpon>KnightExchange.tt</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -293,12 +293,12 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Images\KnightExchangeLogo.png" />
-    <EntityDeploy Include="Models\KnightExchange_Model.edmx">
+    <EntityDeploy Include="Models\KnightExchange.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>KnightExchange_Model.Designer.vb</LastGenOutput>
+      <LastGenOutput>KnightExchange.Designer.vb</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\KnightExchange_Model.edmx.diagram">
-      <DependentUpon>KnightExchange_Model.edmx</DependentUpon>
+    <Content Include="Models\KnightExchange.edmx.diagram">
+      <DependentUpon>KnightExchange.edmx</DependentUpon>
     </Content>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -309,15 +309,15 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <Content Include="Models\KnightExchange_Model.Context.tt">
+    <Content Include="Models\KnightExchange.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>KnightExchange_Model.edmx</DependentUpon>
-      <LastGenOutput>KnightExchange_Model.Context.vb</LastGenOutput>
+      <DependentUpon>KnightExchange.edmx</DependentUpon>
+      <LastGenOutput>KnightExchange.Context.vb</LastGenOutput>
     </Content>
-    <Content Include="Models\KnightExchange_Model.tt">
+    <Content Include="Models\KnightExchange.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>KnightExchange_Model.edmx</DependentUpon>
-      <LastGenOutput>KnightExchange_Model.vb</LastGenOutput>
+      <DependentUpon>KnightExchange.edmx</DependentUpon>
+      <LastGenOutput>KnightExchange.vb</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -354,11 +354,6 @@
     <Content Include="Views\users\Details.vbhtml" />
     <Content Include="Views\users\Edit.vbhtml" />
     <Content Include="Views\users\Index.vbhtml" />
-    <Content Include="Views\book_info\Create.vbhtml" />
-    <Content Include="Views\book_info\Delete.vbhtml" />
-    <Content Include="Views\book_info\Details.vbhtml" />
-    <Content Include="Views\book_info\Edit.vbhtml" />
-    <Content Include="Views\book_info\Index.vbhtml" />
     <Content Include="Views\products\Create.vbhtml" />
     <Content Include="Views\products\Delete.vbhtml" />
     <Content Include="Views\products\Details.vbhtml" />
@@ -370,6 +365,11 @@
     <Content Include="Views\product_info\Edit.vbhtml" />
     <Content Include="Views\product_info\Index.vbhtml" />
     <Content Include="Views\ViewBooks.vbhtml" />
+    <Content Include="Views\book_info\Create.vbhtml" />
+    <Content Include="Views\book_info\Delete.vbhtml" />
+    <Content Include="Views\book_info\Details.vbhtml" />
+    <Content Include="Views\book_info\Edit.vbhtml" />
+    <Content Include="Views\book_info\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -393,6 +393,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Views\Managed\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

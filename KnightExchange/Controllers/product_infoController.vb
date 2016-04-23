@@ -12,12 +12,20 @@ Namespace Controllers
     Public Class product_infoController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New KnightExchangeDBEntities
+        Private db As New KnightExchangeDBEntities1
+        Function Index(searchString As String) As ActionResult
+            Dim myProduct = From p In db.product_info Select p
+            If Not String.IsNullOrEmpty(searchString) Then
+                myProduct = myProduct.Where(Function(p) p.product_name.ToUpper().Contains(searchString.ToUpper()) _
+                    Or p.product_description.ToUpper().Contains(searchString.ToUpper()))
+            End If
+            Return View(myProduct.ToList())
 
-        ' GET: product_info
-        Function Index() As ActionResult
-            Return View(db.product_info.ToList())
         End Function
+        ' GET: product_info
+        'Function Index() As ActionResult
+        '    Return View(db.product_info.ToList())
+        'End Function
 
         ' GET: product_info/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
@@ -32,6 +40,7 @@ Namespace Controllers
         End Function
 
         ' GET: product_info/Create
+        <Authorize>
         Function Create() As ActionResult
             Return View()
         End Function
@@ -51,6 +60,7 @@ Namespace Controllers
         End Function
 
         ' GET: product_info/Edit/5
+        <Authorize>
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
@@ -77,6 +87,7 @@ Namespace Controllers
         End Function
 
         ' GET: product_info/Delete/5
+        <Authorize>
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)

@@ -12,12 +12,22 @@ Namespace Controllers
     Public Class usersController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New KnightExchangeDBEntities
+        Private db As New KnightExchangeDBEntities1
+        Function Index(searchString As String) As ActionResult
+            Dim user = From u In db.users Select u
+            If Not String.IsNullOrEmpty(searchString) Then
+                user = user.Where(Function(u) u.user_lname.ToUpper().Contains(searchString.ToUpper()) _
+                    Or u.user_fname.ToUpper().Contains(searchString.ToUpper()))
+            End If
+            Return View(user.ToList())
+
+        End Function
+
 
         ' GET: users
-        Function Index() As ActionResult
-            Return View(db.users.ToList())
-        End Function
+        'Function Index() As ActionResult
+        '    Return View(db.users.ToList())
+        'End Function
 
         ' GET: users/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
@@ -32,6 +42,7 @@ Namespace Controllers
         End Function
 
         ' GET: users/Create
+        <Authorize>
         Function Create() As ActionResult
             Return View()
         End Function
@@ -51,6 +62,7 @@ Namespace Controllers
         End Function
 
         ' GET: users/Edit/5
+        <Authorize>
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
@@ -77,6 +89,7 @@ Namespace Controllers
         End Function
 
         ' GET: users/Delete/5
+        <Authorize>
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)

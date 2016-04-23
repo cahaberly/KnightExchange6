@@ -12,8 +12,17 @@ Namespace Controllers
     Public Class booksController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New KnightExchangeDBEntities
+        Private db As New KnightExchangeDBEntities1
 
+        ' GET: books
+        'Function Index(ByVal sortOrder As String, searchString As String) As ActionResult
+
+        '    Dim books = db.books.Include(Function(b) b.book_info).Include(Function(b) b.user)
+        '    If Not String.IsNullOrEmpty(searchString) Then
+        '        books = books.Where(Function(b) b.bookinfo_id.Equals(searchString))
+        '    End If
+        '    Return View(books.ToList())
+        'End Function
         ' GET: books
         Function Index() As ActionResult
             Dim books = db.books.Include(Function(b) b.book_info).Include(Function(b) b.user)
@@ -33,6 +42,7 @@ Namespace Controllers
         End Function
 
         ' GET: books/Create
+        <Authorize>
         Function Create() As ActionResult
             ViewBag.bookinfo_id = New SelectList(db.book_info, "bookinfo_id", "book_title")
             ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname")
@@ -56,6 +66,7 @@ Namespace Controllers
         End Function
 
         ' GET: books/Edit/5
+        <Authorize>
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
@@ -86,6 +97,7 @@ Namespace Controllers
         End Function
 
         ' GET: books/Delete/5
+        <Authorize>
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)

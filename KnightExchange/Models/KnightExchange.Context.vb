@@ -11,11 +11,11 @@ Imports System
 Imports System.Data.Entity
 Imports System.Data.Entity.Infrastructure
 
-Partial Public Class KnightExchangeDBEntities
+Partial Public Class KnightExchangeDBEntities1
     Inherits DbContext
 
     Public Sub New()
-        MyBase.New("name=KnightExchangeDBEntities")
+        MyBase.New("name=KnightExchangeDBEntities1")
     End Sub
 
     Protected Overrides Sub OnModelCreating(modelBuilder As DbModelBuilder)
