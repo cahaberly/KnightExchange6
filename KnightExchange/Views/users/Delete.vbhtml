@@ -1,4 +1,4 @@
-﻿@ModelType KnightExchange.user
+﻿@ModelType KnightExchange.users
 @Code
     ViewData("Title") = "Delete"
 End Code
@@ -7,7 +7,7 @@ End Code
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>user</h4>
+    <h4>users</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>

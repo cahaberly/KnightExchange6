@@ -12,11 +12,11 @@ Namespace Controllers
     Public Class productsController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New KnightExchangeDBEntities1
+        Private db As New KnightExchangeDBEntities4
 
         ' GET: products
         Function Index() As ActionResult
-            Dim products = db.products.Include(Function(p) p.product_info).Include(Function(p) p.user)
+            Dim products = db.products.Include(Function(p) p.product_info).Include(Function(p) p.users)
             Return View(products.ToList())
         End Function
 
@@ -25,11 +25,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim product As product = db.products.Find(id)
-            If IsNothing(product) Then
+            Dim products As products = db.products.Find(id)
+            If IsNothing(products) Then
                 Return HttpNotFound()
             End If
-            Return View(product)
+            Return View(products)
         End Function
 
         ' GET: products/Create
@@ -45,15 +45,15 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="product_id,user_id,productinfo_id")> ByVal product As product) As ActionResult
+        Function Create(<Bind(Include:="product_id,user_id,productinfo_id")> ByVal products As products) As ActionResult
             If ModelState.IsValid Then
-                db.products.Add(product)
+                db.products.Add(products)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            ViewBag.productinfo_id = New SelectList(db.product_info, "productinfo_id", "product_name", product.productinfo_id)
-            ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname", product.user_id)
-            Return View(product)
+            ViewBag.productinfo_id = New SelectList(db.product_info, "productinfo_id", "product_name", products.productinfo_id)
+            ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname", products.user_id)
+            Return View(products)
         End Function
 
         ' GET: products/Edit/5
@@ -62,13 +62,13 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim product As product = db.products.Find(id)
-            If IsNothing(product) Then
+            Dim products As products = db.products.Find(id)
+            If IsNothing(products) Then
                 Return HttpNotFound()
             End If
-            ViewBag.productinfo_id = New SelectList(db.product_info, "productinfo_id", "product_name", product.productinfo_id)
-            ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname", product.user_id)
-            Return View(product)
+            ViewBag.productinfo_id = New SelectList(db.product_info, "productinfo_id", "product_name", products.productinfo_id)
+            ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname", products.user_id)
+            Return View(products)
         End Function
 
         ' POST: products/Edit/5
@@ -76,15 +76,15 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="product_id,user_id,productinfo_id")> ByVal product As product) As ActionResult
+        Function Edit(<Bind(Include:="product_id,user_id,productinfo_id")> ByVal products As products) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(product).State = EntityState.Modified
+                db.Entry(products).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            ViewBag.productinfo_id = New SelectList(db.product_info, "productinfo_id", "product_name", product.productinfo_id)
-            ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname", product.user_id)
-            Return View(product)
+            ViewBag.productinfo_id = New SelectList(db.product_info, "productinfo_id", "product_name", products.productinfo_id)
+            ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname", products.user_id)
+            Return View(products)
         End Function
 
         ' GET: products/Delete/5
@@ -93,11 +93,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim product As product = db.products.Find(id)
-            If IsNothing(product) Then
+            Dim products As products = db.products.Find(id)
+            If IsNothing(products) Then
                 Return HttpNotFound()
             End If
-            Return View(product)
+            Return View(products)
         End Function
 
         ' POST: products/Delete/5
@@ -105,8 +105,8 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim product As product = db.products.Find(id)
-            db.products.Remove(product)
+            Dim products As products = db.products.Find(id)
+            db.products.Remove(products)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function

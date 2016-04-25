@@ -12,7 +12,7 @@ Namespace Controllers
     Public Class book_infoController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New KnightExchangeDBEntities1
+        Private db As New KnightExchangeDBEntities4
         ' GET: book_info
         Function Index(searchString As String) As ActionResult
             Dim myBook = From s In db.book_info Select s
@@ -25,7 +25,7 @@ Namespace Controllers
             'Return View(db.book_info.ToList())
         End Function
 
-        '' GET: book_info
+        ' GET: book_info
         'Function Index() As ActionResult
         '    Return View(db.book_info.ToList())
         'End Function

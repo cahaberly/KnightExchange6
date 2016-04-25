@@ -12,17 +12,16 @@ Namespace Controllers
     Public Class usersController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New KnightExchangeDBEntities1
+        Private db As New KnightExchangeDBEntities4
         Function Index(searchString As String) As ActionResult
-            Dim user = From u In db.users Select u
+            Dim users = From u In db.users Select u
             If Not String.IsNullOrEmpty(searchString) Then
-                user = user.Where(Function(u) u.user_lname.ToUpper().Contains(searchString.ToUpper()) _
+                users = users.Where(Function(u) u.user_lname.ToUpper().Contains(searchString.ToUpper()) _
                     Or u.user_fname.ToUpper().Contains(searchString.ToUpper()))
             End If
-            Return View(user.ToList())
+            Return View(users.ToList())
 
         End Function
-
 
         ' GET: users
         'Function Index() As ActionResult
@@ -34,11 +33,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim user As user = db.users.Find(id)
-            If IsNothing(user) Then
+            Dim users As users = db.users.Find(id)
+            If IsNothing(users) Then
                 Return HttpNotFound()
             End If
-            Return View(user)
+            Return View(users)
         End Function
 
         ' GET: users/Create
@@ -52,13 +51,13 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="user_id,user_lname,user_fname,user_email,user_permission")> ByVal user As user) As ActionResult
+        Function Create(<Bind(Include:="user_id,user_lname,user_fname,user_email,user_permission")> ByVal users As users) As ActionResult
             If ModelState.IsValid Then
-                db.users.Add(user)
+                db.users.Add(users)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(user)
+            Return View(users)
         End Function
 
         ' GET: users/Edit/5
@@ -67,11 +66,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim user As user = db.users.Find(id)
-            If IsNothing(user) Then
+            Dim users As users = db.users.Find(id)
+            If IsNothing(users) Then
                 Return HttpNotFound()
             End If
-            Return View(user)
+            Return View(users)
         End Function
 
         ' POST: users/Edit/5
@@ -79,13 +78,13 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="user_id,user_lname,user_fname,user_email,user_permission")> ByVal user As user) As ActionResult
+        Function Edit(<Bind(Include:="user_id,user_lname,user_fname,user_email,user_permission")> ByVal users As users) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(user).State = EntityState.Modified
+                db.Entry(users).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(user)
+            Return View(users)
         End Function
 
         ' GET: users/Delete/5
@@ -94,11 +93,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim user As user = db.users.Find(id)
-            If IsNothing(user) Then
+            Dim users As users = db.users.Find(id)
+            If IsNothing(users) Then
                 Return HttpNotFound()
             End If
-            Return View(user)
+            Return View(users)
         End Function
 
         ' POST: users/Delete/5
@@ -106,8 +105,8 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim user As user = db.users.Find(id)
-            db.users.Remove(user)
+            Dim users As users = db.users.Find(id)
+            db.users.Remove(users)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function

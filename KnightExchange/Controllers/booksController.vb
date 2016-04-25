@@ -12,20 +12,11 @@ Namespace Controllers
     Public Class booksController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New KnightExchangeDBEntities1
+        Private db As New KnightExchangeDBEntities4
 
-        ' GET: books
-        'Function Index(ByVal sortOrder As String, searchString As String) As ActionResult
-
-        '    Dim books = db.books.Include(Function(b) b.book_info).Include(Function(b) b.user)
-        '    If Not String.IsNullOrEmpty(searchString) Then
-        '        books = books.Where(Function(b) b.bookinfo_id.Equals(searchString))
-        '    End If
-        '    Return View(books.ToList())
-        'End Function
         ' GET: books
         Function Index() As ActionResult
-            Dim books = db.books.Include(Function(b) b.book_info).Include(Function(b) b.user)
+            Dim books = db.books.Include(Function(b) b.book_info).Include(Function(b) b.users)
             Return View(books.ToList())
         End Function
 
@@ -34,11 +25,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim book As book = db.books.Find(id)
-            If IsNothing(book) Then
+            Dim books As books = db.books.Find(id)
+            If IsNothing(books) Then
                 Return HttpNotFound()
             End If
-            Return View(book)
+            Return View(books)
         End Function
 
         ' GET: books/Create
@@ -54,15 +45,15 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="book_id,user_id,bookinfo_id")> ByVal book As book) As ActionResult
+        Function Create(<Bind(Include:="book_id,user_id,bookinfo_id")> ByVal books As books) As ActionResult
             If ModelState.IsValid Then
-                db.books.Add(book)
+                db.books.Add(books)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            ViewBag.bookinfo_id = New SelectList(db.book_info, "bookinfo_id", "book_title", book.bookinfo_id)
-            ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname", book.user_id)
-            Return View(book)
+            ViewBag.bookinfo_id = New SelectList(db.book_info, "bookinfo_id", "book_title", books.bookinfo_id)
+            ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname", books.user_id)
+            Return View(books)
         End Function
 
         ' GET: books/Edit/5
@@ -71,13 +62,13 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim book As book = db.books.Find(id)
-            If IsNothing(book) Then
+            Dim books As books = db.books.Find(id)
+            If IsNothing(books) Then
                 Return HttpNotFound()
             End If
-            ViewBag.bookinfo_id = New SelectList(db.book_info, "bookinfo_id", "book_title", book.bookinfo_id)
-            ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname", book.user_id)
-            Return View(book)
+            ViewBag.bookinfo_id = New SelectList(db.book_info, "bookinfo_id", "book_title", books.bookinfo_id)
+            ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname", books.user_id)
+            Return View(books)
         End Function
 
         ' POST: books/Edit/5
@@ -85,15 +76,15 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="book_id,user_id,bookinfo_id")> ByVal book As book) As ActionResult
+        Function Edit(<Bind(Include:="book_id,user_id,bookinfo_id")> ByVal books As books) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(book).State = EntityState.Modified
+                db.Entry(books).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            ViewBag.bookinfo_id = New SelectList(db.book_info, "bookinfo_id", "book_title", book.bookinfo_id)
-            ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname", book.user_id)
-            Return View(book)
+            ViewBag.bookinfo_id = New SelectList(db.book_info, "bookinfo_id", "book_title", books.bookinfo_id)
+            ViewBag.user_id = New SelectList(db.users, "user_id", "user_lname", books.user_id)
+            Return View(books)
         End Function
 
         ' GET: books/Delete/5
@@ -102,11 +93,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim book As book = db.books.Find(id)
-            If IsNothing(book) Then
+            Dim books As books = db.books.Find(id)
+            If IsNothing(books) Then
                 Return HttpNotFound()
             End If
-            Return View(book)
+            Return View(books)
         End Function
 
         ' POST: books/Delete/5
@@ -114,8 +105,8 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim book As book = db.books.Find(id)
-            db.books.Remove(book)
+            Dim books As books = db.books.Find(id)
+            db.books.Remove(books)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function

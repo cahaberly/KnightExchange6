@@ -1,4 +1,4 @@
-﻿@ModelType KnightExchange.user
+﻿@ModelType KnightExchange.users
 @Code
     ViewData("Title") = "Edit"
 End Code
@@ -9,7 +9,7 @@ End Code
     @Html.AntiForgeryToken()
     
     @<div class="form-horizontal">
-        <h4>user</h4>
+        <h4>users</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
         @Html.HiddenFor(Function(model) model.user_id)

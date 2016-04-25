@@ -1,4 +1,4 @@
-﻿@ModelType KnightExchange.book
+﻿@ModelType KnightExchange.books
 @Code
     ViewData("Title") = "Create"
 End Code
@@ -9,7 +9,7 @@ End Code
     @Html.AntiForgeryToken()
     
     @<div class="form-horizontal">
-        <h4>book</h4>
+        <h4>books</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
         <div class="form-group">

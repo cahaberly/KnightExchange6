@@ -11,11 +11,11 @@ Imports System
 Imports System.Data.Entity
 Imports System.Data.Entity.Infrastructure
 
-Partial Public Class KnightExchangeDBEntities1
+Partial Public Class KnightExchangeDBEntities4
     Inherits DbContext
 
     Public Sub New()
-        MyBase.New("name=KnightExchangeDBEntities1")
+        MyBase.New("name=KnightExchangeDBEntities4")
     End Sub
 
     Protected Overrides Sub OnModelCreating(modelBuilder As DbModelBuilder)
@@ -23,9 +23,9 @@ Partial Public Class KnightExchangeDBEntities1
     End Sub
 
     Public Overridable Property book_info() As DbSet(Of book_info)
-    Public Overridable Property books() As DbSet(Of book)
+    Public Overridable Property books() As DbSet(Of books)
     Public Overridable Property product_info() As DbSet(Of product_info)
-    Public Overridable Property products() As DbSet(Of product)
-    Public Overridable Property users() As DbSet(Of user)
+    Public Overridable Property products() As DbSet(Of products)
+    Public Overridable Property users() As DbSet(Of users)
 
 End Class

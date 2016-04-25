@@ -12,7 +12,7 @@ Namespace Controllers
     Public Class product_infoController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New KnightExchangeDBEntities1
+        Private db As New KnightExchangeDBEntities4
         Function Index(searchString As String) As ActionResult
             Dim myProduct = From p In db.product_info Select p
             If Not String.IsNullOrEmpty(searchString) Then
@@ -22,6 +22,7 @@ Namespace Controllers
             Return View(myProduct.ToList())
 
         End Function
+
         ' GET: product_info
         'Function Index() As ActionResult
         '    Return View(db.product_info.ToList())

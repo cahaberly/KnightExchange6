@@ -1,4 +1,4 @@
-﻿@ModelType KnightExchange.user
+﻿@ModelType KnightExchange.users
 @Code
     ViewData("Title") = "Details"
 End Code
@@ -6,7 +6,7 @@ End Code
 <h2>Details</h2>
 
 <div>
-    <h4>user</h4>
+    <h4>users</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>

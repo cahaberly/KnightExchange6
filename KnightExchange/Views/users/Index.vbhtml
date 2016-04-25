@@ -1,4 +1,4 @@
-﻿@ModelType IEnumerable(Of KnightExchange.user)
+﻿@ModelType IEnumerable(Of KnightExchange.users)
 @Code
 ViewData("Title") = "Index"
 End Code

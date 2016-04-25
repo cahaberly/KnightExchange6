@@ -1,4 +1,4 @@
-﻿@ModelType KnightExchange.book
+﻿@ModelType KnightExchange.books
 @Code
     ViewData("Title") = "Delete"
 End Code
@@ -7,7 +7,7 @@ End Code
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>book</h4>
+    <h4>books</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,11 +19,11 @@ End Code
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.user.user_lname)
+            @Html.DisplayNameFor(Function(model) model.users.user_lname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.user.user_lname)
+            @Html.DisplayFor(Function(model) model.users.user_lname)
         </dd>
 
     </dl>

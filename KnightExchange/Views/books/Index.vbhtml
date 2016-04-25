@@ -1,4 +1,4 @@
-﻿@ModelType IEnumerable(Of KnightExchange.book)
+﻿@ModelType IEnumerable(Of KnightExchange.books)
 @Code
 ViewData("Title") = "Index"
 End Code
@@ -14,7 +14,7 @@ End Code
             @Html.DisplayNameFor(Function(model) model.book_info.book_title)
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.user.user_lname)
+            @Html.DisplayNameFor(Function(model) model.users.user_lname)
         </th>
         <th></th>
     </tr>
@@ -25,7 +25,7 @@ End Code
             @Html.DisplayFor(Function(modelItem) item.book_info.book_title)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.user.user_lname)
+            @Html.DisplayFor(Function(modelItem) item.users.user_lname)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", New With {.id = item.book_id }) |
