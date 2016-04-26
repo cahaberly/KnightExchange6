@@ -34,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - C. Haberly, C. Bockholt, K. Jackson, K. Conethan</p>
+            <p>&copy; @DateTime.Now.Year - C. Haberly, C. Bockholt, K. Jackson, K. Conethan<br />For ITEC 4286</p>
         </footer>
     </div>
 
